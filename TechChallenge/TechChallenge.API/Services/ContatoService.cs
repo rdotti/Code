@@ -8,7 +8,7 @@ namespace TechChallenge.API.Services
     {
         public void Delete(int id) => _repository.Delete(id);
 
-        public ContatoGetModel Get(int id) => _repository.Get(id).FromEntity();
+        public ContatoGetModel? Get(int id) => _repository.Get(id)?.FromEntity();
 
         public IList<ContatoGetModel> GetAll() => 
             _repository.GetAll().Select(c => c.FromEntity()).ToList();

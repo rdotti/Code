@@ -19,7 +19,7 @@ namespace TechChallenge.Tests
             var errors = ValidateModel(new ContatoInsertModel()
             {
                 DDD = 11,
-                EMail = "email@email.com",
+                EMail = "email@dominio.com",
                 Nome = null,
                 Telefone = "12345678"
             });
@@ -32,10 +32,10 @@ namespace TechChallenge.Tests
         {
             var errors = ValidateModel(new ContatoInsertModel()
             {
-                DDD = 1,
-                EMail = "email@email.com",
+                DDD = 11,
+                EMail = "email@dominio.com",
                 Nome = string.Empty,
-                Telefone = "123"
+                Telefone = "12345678"
             });
 
             Assert.True(errors.Any(v => v.MemberNames.Contains("Nome") && v.ErrorMessage.Contains("Nome é obrigatório")));
@@ -46,10 +46,10 @@ namespace TechChallenge.Tests
         {
             var errors = ValidateModel(new ContatoInsertModel()
             {
-                DDD = 1,
-                EMail = "emailemail.com",
-                Nome = "Rafael",
-                Telefone = "123"
+                DDD = 11,
+                EMail = "emaildominio.com",
+                Nome = "Nome Sobrenome",
+                Telefone = "12345678"
             });
 
             Assert.True(errors.Any(v => v.MemberNames.Contains("EMail") && v.ErrorMessage.Contains("E-mail inválido")));
@@ -60,10 +60,10 @@ namespace TechChallenge.Tests
         {
             var errors = ValidateModel(new ContatoInsertModel()
             {
-                DDD = 1,
+                DDD = 11,
                 EMail = "email@.com",
-                Nome = "Rafael",
-                Telefone = "123"
+                Nome = "Nome Sobrenome",
+                Telefone = "12345678"
             });
 
             Assert.True(errors.Any(v => v.MemberNames.Contains("EMail") && v.ErrorMessage.Contains("E-mail inválido")));
@@ -74,10 +74,10 @@ namespace TechChallenge.Tests
         {
             var errors = ValidateModel(new ContatoInsertModel()
             {
-                DDD = 1,
-                EMail = "email@email",
-                Nome = "Rafael",
-                Telefone = "123"
+                DDD = 11,
+                EMail = "email@dominio",
+                Nome = "Nome Sobrenome",
+                Telefone = "12345678"
             });
 
             Assert.True(errors.Any(v => v.MemberNames.Contains("EMail") && v.ErrorMessage.Contains("E-mail inválido")));
@@ -89,9 +89,9 @@ namespace TechChallenge.Tests
             var errors = ValidateModel(new ContatoInsertModel()
             {
                 DDD = 1,
-                EMail = "email@email.com",
-                Nome = "Rafael",
-                Telefone = "123"
+                EMail = "email@dominio.com",
+                Nome = "Nome Sobrenome",
+                Telefone = "12345678"
             });
 
             Assert.True(errors.Any(v => v.MemberNames.Contains("DDD") && v.ErrorMessage.Contains("Região inválida")));
@@ -103,9 +103,9 @@ namespace TechChallenge.Tests
             var errors = ValidateModel(new ContatoInsertModel()
             {
                 DDD = 100,
-                EMail = "email@email.com",
-                Nome = "Rafael",
-                Telefone = "123"
+                EMail = "email@dominio.com",
+                Nome = "Nome Sobrenome",
+                Telefone = "12345678"
             });
 
             Assert.True(errors.Any(v => v.MemberNames.Contains("DDD") && v.ErrorMessage.Contains("Região inválida")));
@@ -116,9 +116,9 @@ namespace TechChallenge.Tests
         {
             var errors = ValidateModel(new ContatoInsertModel()
             {
-                DDD = 1,
-                EMail = "email@email.com",
-                Nome = "Rafael",
+                DDD = 11,
+                EMail = "email@dominio.com",
+                Nome = "Nome Sobrenome",
                 Telefone = "1234567"
             });
 
@@ -130,9 +130,9 @@ namespace TechChallenge.Tests
         {
             var errors = ValidateModel(new ContatoInsertModel()
             {
-                DDD = 1,
-                EMail = "email@email.com",
-                Nome = "Rafael",
+                DDD = 11,
+                EMail = "email@dominio.com",
+                Nome = "Nome Sobrenome",
                 Telefone = "1234567890"
             });
 

@@ -11,12 +11,17 @@ namespace TechChallenge.Infraestructure.Repository
 
         public void Delete(int id)
         {
-            _dbSet.Remove(Get(id));
+            var entity = Get(id);
+            
+            if (entity == null)
+                return;
+
+            _dbSet.Remove(entity);
             _context.SaveChanges();
         }
 
-        public T Get(int id) =>
-            _dbSet.First(d => d.Id == id);
+        public T? Get(int id) =>
+            _dbSet.FirstOrDefault(d => d.Id == id);
 
         public IList<T> GetAll() =>
             _dbSet.ToList();

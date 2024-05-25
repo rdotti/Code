@@ -6,7 +6,7 @@ namespace TechChallenge.API.Services
     public interface IContatoService
     {
         IList<ContatoGetModel> GetAll();
-        ContatoGetModel Get(int id);
+        ContatoGetModel? Get(int id);
         void Insert(ContatoInsertModel entity);
         void Update(ContatoUpdateModel entity);
         void Delete(int id);

@@ -20,7 +20,11 @@ namespace TechChallenge.API.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("{id}")]
-        public IActionResult Get(int id) => Ok(_service.Get(id));
+        public IActionResult Get(int id)
+        {
+            var model = _service.Get(id);
+            return model != null ? Ok(model) : NotFound();
+        }
 
         /// <summary>
         /// Pesquisa contatos de acordo com o DDD
