@@ -8,5 +8,5 @@ RUN dotnet publish TechChallenge.API -c Release -o out
 
 FROM mcr.miicrosoft.com/dotnet/aspnet:8.0
 WORKDIR /App
-COPY --from=build-env
+COPY --from=build-env .App/out ./
 ENTRYPOINT ["dotnet", "TechChallenge.API"]
