@@ -8,7 +8,7 @@ on:
 jobs:
   build:
     #runs-on: self-hosted
-    runs-on: ubuntu-hosted
+    runs-on: windows-latest
     steps:
       - name: Cheking out
         uses: actions/checkout@v4
