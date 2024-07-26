@@ -20,7 +20,7 @@ jobs:
           dotnet-version: '8.0.101'
 
       - name: Build
-        run: dotnet build -c Release --verbosity minimal
+        run: dotnet build TechChallenge.API -c Release --verbosity minimal
 
       - name: Tests
-        run: dotnet test -c Release --verbosity minimal --no-build --no-restore
+        run: dotnet test TechChallenge.Tests -c Release --verbosity minimal --no-build --no-restore
