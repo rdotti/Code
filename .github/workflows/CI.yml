@@ -19,8 +19,8 @@ jobs:
         with:
           dotnet-version: '8.0.101'
 
-      - name: ls
-        run: ls -l
+      #- name: ls
+        #run: ls -l
 
       - name: Build
         run: dotnet build ./TechChallenge/TechChallenge.sln -c Release --verbosity minimal
