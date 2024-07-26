@@ -23,7 +23,7 @@ jobs:
         run: ls -l
 
       - name: Build
-        run: dotnet build TechChallenge.sln -c Release --verbosity minimal
+        run: dotnet build ./TechChallenge/TechChallenge.sln -c Release --verbosity minimal
 
       - name: Tests
-        run: dotnet test ./TechChallenge.Tests/TechChallenge.Tests.csproj -c Release --verbosity minimal --no-build --no-restore
+        run: dotnet test ./TechChallenge/TechChallenge.Tests/TechChallenge.Tests.csproj -c Release --verbosity minimal --no-build --no-restore
