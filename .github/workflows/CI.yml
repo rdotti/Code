@@ -24,6 +24,11 @@ jobs:
           docker pull mcr.microsoft.com/mssql/server
           docker run -v ~/docker -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=1q2w3e4r@#$" -p 11433:1433 -d mcr.microsoft.com/mssql/server
 
+      - name: Run database migrations
+        env:
+          ConnectionStrings__TechChallenge: "Server=localhost,11433;Database=TechChallenge_Test;User Id=sa;Password=1q2w3e4r@#$;TrustServerCertificate=true;"
+        run: dotnet ef database update --startup-project TechChallenge.Infraestructure --project TechChallenge.Infraestructure
+
       - name: Build
         run: dotnet build ./TechChallenge/TechChallenge.sln -c Release --verbosity minimal
 
