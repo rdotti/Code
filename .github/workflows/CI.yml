@@ -22,7 +22,7 @@ jobs:
       - name: Criação do container
         run: |
           docker pull mcr.microsoft.com/mssql/server
-          docker run -v ~/docker -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=1q2w3e4r@#$" -p 11433:1433 -d mcr.microsoft.com/mssql/server
+          docker run -v ~/docker -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=1q2w3e4r@#$" -p 11433:1433 -d mcr.microsoft.com/mssql/server --name sqlserver
 
       - name: Install EF Core CLI
         run: dotnet tool install dotnet-ef --global
