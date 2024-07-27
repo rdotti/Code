@@ -22,7 +22,7 @@ jobs:
       - name: Criação do container
         run: |
           docker pull mcr.microsoft.com/mssql/server
-          docker run -v ~/docker -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=1q2w3e4r@#$" -p 1433:1433 -d mcr.microsoft.com/mssql/server --name localhost --host localhost
+          docker run -v ~/docker -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=1q2w3e4r@#$" -p 11433:1433 -d mcr.microsoft.com/mssql/server
 
       - name: Build
         run: dotnet build ./TechChallenge/TechChallenge.sln -c Release --verbosity minimal
