@@ -30,7 +30,7 @@ jobs:
       
       - name: Run database migrations
         env:
-          ConnectionStrings__TechChallenge: "Server=localhost,11433;Database=TechChallenge_Test;User Id=sa;Password=1q2w3e4r@#$;TrustServerCertificate=true;"
+          ConnectionStrings_TechChallenge: "Server=localhost,11433;Database=TechChallenge_Test;User Id=sa;Password=1q2w3e4r@#$;TrustServerCertificate=true;"
         run: dotnet ef database update --startup-project ./TechChallenge/TechChallenge.Infraestructure/TechChallenge.Infraestructure.csproj --project ./TechChallenge/TechChallenge.Infraestructure/TechChallenge.Infraestructure.csproj
 
       - name: Build
