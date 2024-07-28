@@ -1,26 +1,19 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.SqlServer.Infrastructure.Internal;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Options;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TechChallenge.Core.Entities;
 
 namespace TechChallenge.Infraestructure.Repository
 {
     public class ApplicationDbContext : DbContext
     {
-        private readonly string _connString;
+        private readonly string? _connString;
 
         public ApplicationDbContext() { }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
-            var sqlServerOptionsExtension = options.FindExtension<SqlServerOptionsExtension>();
-            _connString = sqlServerOptionsExtension.ConnectionString ?? throw new Exception("String de conexão não informada");
+            _connString = options.FindExtension<SqlServerOptionsExtension>().ConnectionString 
+                ?? throw new Exception("String de conexão não informada");
         }
 
         public ApplicationDbContext(string connString) { _connString = connString; }
