@@ -20,7 +20,7 @@ jobs:
           dotnet-version: '8.0.101'
 
       - name: Imagem SQL Server
-        run: docker pull mcr.microsoft.com/mssql/server-latest
+        run: docker pull mcr.microsoft.com/mssql/server
 
       # - name: Criação do container
       #   run: |
