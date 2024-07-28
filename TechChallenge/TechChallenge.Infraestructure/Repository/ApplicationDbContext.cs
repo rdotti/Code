@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.SqlServer.Infrastructure.Internal;
+using Microsoft.Extensions.Configuration;
 using TechChallenge.Core.Entities;
 
 namespace TechChallenge.Infraestructure.Repository
@@ -12,7 +12,12 @@ namespace TechChallenge.Infraestructure.Repository
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
-            _connString = options.FindExtension<SqlServerOptionsExtension>().ConnectionString 
+            IConfiguration configuration = new ConfigurationBuilder()
+                .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+                .AddJsonFile("appsettings.json")
+                .Build();
+
+            _connString = configuration.GetConnectionString("TechChallenge")
                 ?? throw new Exception("String de conexão não informada");
         }
 

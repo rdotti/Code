@@ -8,8 +8,8 @@ namespace TechChallenge.Integration.Tests
 {
     public class DockerFixture : IDisposable
     {
-        private DockerClient _dockerClient;
-        private string _containerId;
+        private readonly DockerClient _dockerClient;
+        private readonly string _containerId;
 
         public DockerFixture()
         {
@@ -32,7 +32,7 @@ namespace TechChallenge.Integration.Tests
                 {
                     PortBindings = new Dictionary<string, IList<PortBinding>>
                     {
-                        { "1433", new List<PortBinding> { new PortBinding { HostPort = "11433" } } }
+                        { "1433", new List<PortBinding> { new() { HostPort = "11433" } } }
                     },
                     PublishAllPorts = true
                 }
@@ -42,56 +42,47 @@ namespace TechChallenge.Integration.Tests
             _containerId = createContainerResponse.ID;
 
             _dockerClient.Containers.StartContainerAsync(_containerId, new ContainerStartParameters()).GetAwaiter().GetResult();
-            WaitForSqlServerAvailability().GetAwaiter().GetResult();
-            CreateDatabaseAsync().GetAwaiter().GetResult();
-            ApplyMigrations();
+            ConnectionTest().GetAwaiter().GetResult();
+            CreateDatabase().GetAwaiter().GetResult();
+            RunMigrations();
 
         }
 
-        private async Task WaitForSqlServerAvailability()
+        private static async Task ConnectionTest()
         {
-            var maxRetries = 10;
-            var retryDelay = TimeSpan.FromSeconds(5);
-
-            for (int i = 0; i < maxRetries; i++)
+            for (int i = 0; i < 10; i++)
             {
                 try
                 {
-                    using (var connection = new SqlConnection("Server=localhost,11433;User Id=sa;Password=1q2w3e4r@#$;TrustServerCertificate=true;"))
-                    {
-                        await connection.OpenAsync();
-                        return;
-                    }
+                    using var connection = new SqlConnection("Server=localhost,11433;User Id=sa;Password=1q2w3e4r@#$;TrustServerCertificate=true;");
+                    await connection.OpenAsync();
+                    return;
                 }
                 catch (SqlException)
                 {
-                    await Task.Delay(retryDelay);
+                    await Task.Delay(TimeSpan.FromSeconds(5));
                 }
             }
 
-            throw new Exception("O SQL Server não está disponível após múltiplas tentativas.");
+            throw new Exception("Não foi possível estabelecer uma conexão SQL Server!");
         }
 
-        private async Task CreateDatabaseAsync()
+        private static async Task CreateDatabase()
         {
-            using (var connection = new SqlConnection("Server=localhost,11433;User Id=sa;Password=1q2w3e4r@#$;TrustServerCertificate=true;"))
-            {
-                await connection.OpenAsync();
-                var command = connection.CreateCommand();
-                command.CommandText = "CREATE DATABASE TechChallenge_Fase1";
-                await command.ExecuteNonQueryAsync();
-            }
+            using var connection = new SqlConnection("Server=localhost,11433;User Id=sa;Password=1q2w3e4r@#$;TrustServerCertificate=true;");
+            await connection.OpenAsync();
+            var command = connection.CreateCommand();
+            command.CommandText = "CREATE DATABASE TechChallenge_Fase1";
+            await command.ExecuteNonQueryAsync();
         }
 
-        private void ApplyMigrations()
+        private static void RunMigrations()
         {
             var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
             optionsBuilder.UseSqlServer("Server=localhost,11433;Database=TechChallenge_Fase1;User Id=sa;Password=1q2w3e4r@#$;TrustServerCertificate=true;");
 
-            using (var context = new ApplicationDbContext(optionsBuilder.Options))
-            {
-                context.Database.Migrate();
-            }
+            using var context = new ApplicationDbContext(optionsBuilder.Options);
+            context.Database.Migrate();
         }
 
         public void Dispose()
