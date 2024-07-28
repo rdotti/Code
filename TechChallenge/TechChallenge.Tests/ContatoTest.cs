@@ -1,12 +1,15 @@
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 using TechChallenge.Core.Models;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace TechChallenge.Tests
 {
     public class ContatoTest
     {
-        private IList<ValidationResult> ValidateModel(object model)
+        private readonly ComparerValidationResult _comparer = new();
+        
+        private static List<ValidationResult> ValidateModel(object model)
         {
             var validationResults = new List<ValidationResult>();
             var ctx = new ValidationContext(model, null, null);
@@ -17,44 +20,46 @@ namespace TechChallenge.Tests
         [Fact]
         public void Contato_Validate_NomeNulo()
         {
-            var errors = ValidateModel(new ContatoInsertModel()
+            var error = ValidateModel(new ContatoInsertModel()
             {
                 DDD = 11,
                 EMail = "email@dominio.com",
                 Nome = null,
                 Telefone = "12345678"
-            });
+            }).First();
 
             //Assert.Contains(errors, (e) => e.MemberNames.Contains("Nome") && (e.ErrorMessage?.Contains("Nome é obrigatório", StringComparison.InvariantCultureIgnoreCase) ?? false));
-            Assert.Contains(new("Nome é obrigatório", ["Nome"]), errors, new ComparerValidationResult());
+            Assert.Equal(new("Nome é obrigatório", ["Nome"]), error, _comparer);
         }
 
         [Fact]
         public void Contato_Validate_NomeVazio()
         {
-            var errors = ValidateModel(new ContatoInsertModel()
+            var error = ValidateModel(new ContatoInsertModel()
             {
                 DDD = 11,
                 EMail = "email@dominio.com",
                 Nome = string.Empty,
                 Telefone = "12345678"
-            });
-           
-            Assert.Contains(errors, (e) => e.MemberNames.Contains("Nome") && (e.ErrorMessage?.Contains("Nome é obrigatório") ?? false));
+            }).First();
+
+            //Assert.Contains(errors, (e) => e.MemberNames.Contains("Nome") && (e.ErrorMessage?.Contains("Nome é obrigatório") ?? false));
+            Assert.Equal(new("Nome é obrigatório", ["Nome"]), error, _comparer);
         }
 
         [Fact]
         public void Contato_Validate_EmailSemArroba()
         {
-            var errors = ValidateModel(new ContatoInsertModel()
+            var error = ValidateModel(new ContatoInsertModel()
             {
                 DDD = 11,
                 EMail = "emaildominio.com",
                 Nome = "Nome Sobrenome",
                 Telefone = "12345678"
-            });
+            }).First();
 
-            Assert.Contains(errors, (e) => e.MemberNames.Contains("EMail") && (e.ErrorMessage?.Contains("E-mail inválido") ?? false));
+            //Assert.Contains(errors, (e) => e.MemberNames.Contains("EMail") && (e.ErrorMessage?.Contains("E-mail inválido") ?? false));
+            Assert.Equal(new("E-mail inválido", ["EMail"]), error, _comparer);
         }
 
         [Fact]
@@ -144,11 +149,10 @@ namespace TechChallenge.Tests
 
     class ComparerValidationResult : IEqualityComparer<ValidationResult>
     {
-        public bool Equals(ValidationResult? x, ValidationResult? y) => (x.ErrorMessage == y.ErrorMessage && x.MemberNames.All(y.MemberNames.Contains));
+        public bool Equals(ValidationResult? x, ValidationResult? y) =>
+            x.ErrorMessage == y.ErrorMessage && x.MemberNames.SequenceEqual(y.MemberNames);
 
-        public int GetHashCode([DisallowNull] ValidationResult obj)
-        {
-            throw new NotImplementedException();
-        }
+        public int GetHashCode([DisallowNull] ValidationResult obj) =>
+            obj.GetHashCode();
     }
 }
