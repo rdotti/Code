@@ -22,29 +22,11 @@ jobs:
       - name: Imagem SQL Server
         run: docker pull mcr.microsoft.com/mssql/server
 
-      # - name: Criação do container
-      #   run: |
-      #     docker pull mcr.microsoft.com/mssql/server
-      #     docker run -v ~/docker -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=1q2w3e4r@#$" -p 11433:1433 --name sqlserver -d mcr.microsoft.com/mssql/server
-
-      # - name: Install EF Core CLI
-      #   run: dotnet tool install dotnet-ef --global
-      #   shell: bash
-      
-      # - name: Run database migrations
-      #   env:
-      #     ConnectionStrings_TechChallenge: "Server=localhost,11433;Database=TechChallenge_Fase1;User Id=sa;Password=1q2w3e4r@#$;TrustServerCertificate=true;"
-      #   run: dotnet ef database update --startup-project ./TechChallenge/TechChallenge.Infraestructure/TechChallenge.Infraestructure.csproj --project ./TechChallenge/TechChallenge.Infraestructure/TechChallenge.Infraestructure.csproj --connection "Server=localhost,11433;Database=TechChallenge_Fase1;User Id=sa;Password=1q2w3e4r@#$;TrustServerCertificate=true;"
-
-      # - name: Check Database
-      #   #run: docker exec sqlserver /opt/mssql-tools/bin/sqlcmd -S localhost,11433 -U SA -P "1q2w3e4r@#$" -Q "CREATE DATABASE TechChallenge_Test;"
-      #   run: docker exec sqlserver /opt/mssql-tools/bin/sqlcmd -S localhost,11433 -U SA -P "1q2w3e4r@#$" -Q "select * from sys.databases;"
-
       - name: Build
         run: dotnet build ./TechChallenge/TechChallenge.sln -c Release --verbosity minimal
 
-      #- name: Testes uninários
-        #run: dotnet test ./TechChallenge/TechChallenge.Tests/TechChallenge.Tests.csproj -c Release --verbosity minimal --no-build --no-restore
+      - name: Testes uninários
+        run: dotnet test ./TechChallenge/TechChallenge.Tests/TechChallenge.Tests.csproj -c Release --verbosity minimal --no-build --no-restore
 
       - name: Testes de integração
         run: dotnet test ./TechChallenge/TechChallenge.Integration.Tests/TechChallenge.Integration.Tests.csproj -c Release --verbosity minimal --no-build --no-restore
