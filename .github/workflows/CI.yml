@@ -25,8 +25,8 @@ jobs:
       - name: Build
         run: dotnet build ./TechChallenge/TechChallenge.sln -c Release --verbosity minimal
 
-      # - name: Testes uninários
-      #   run: dotnet test ./TechChallenge/TechChallenge.Tests/TechChallenge.Tests.csproj -c Release --verbosity minimal --no-build --no-restore
+      - name: Testes uninários
+        run: dotnet test ./TechChallenge/TechChallenge.Tests/TechChallenge.Tests.csproj -c Release --verbosity minimal --no-build --no-restore
 
       - name: Testes de integração
         run: dotnet test ./TechChallenge/TechChallenge.Integration.Tests/TechChallenge.Integration.Tests.csproj -c Release --verbosity minimal --no-build --no-restore
