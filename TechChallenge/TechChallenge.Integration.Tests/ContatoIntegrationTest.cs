@@ -4,14 +4,12 @@ using TechChallenge.Core.Models;
 
 namespace TechChallenge.Integration.Tests
 {
-    public class ContatoIntegrationTest: IClassFixture<TechChallengeWebApplicationFactory<Program>>
+    public class ContatoIntegrationTest: IClassFixture<TechChallengeWebApplicationFactory<Program>>, IClassFixture<DockerFixture>
     {
         private readonly HttpClient _client;
-        private readonly TechChallengeWebApplicationFactory<Program> _factory;
 
         public ContatoIntegrationTest(TechChallengeWebApplicationFactory<Program> factory)
         {
-            _factory = factory;
             _client = factory.CreateClient();
         }
 
