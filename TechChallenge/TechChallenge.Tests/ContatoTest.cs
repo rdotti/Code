@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 using TechChallenge.Core.Models;
 
 namespace TechChallenge.Tests
@@ -24,7 +25,8 @@ namespace TechChallenge.Tests
                 Telefone = "12345678"
             });
 
-            Assert.Contains(errors, (e) => e.MemberNames.Contains("Nome") && (e.ErrorMessage?.Contains("Nome é obrigatório", StringComparison.InvariantCultureIgnoreCase) ?? false));
+            //Assert.Contains(errors, (e) => e.MemberNames.Contains("Nome") && (e.ErrorMessage?.Contains("Nome é obrigatório", StringComparison.InvariantCultureIgnoreCase) ?? false));
+            Assert.Contains(new("Nome é obrigatório", ["Nome"]), errors, new ComparerValidationResult());
         }
 
         [Fact]
@@ -137,6 +139,16 @@ namespace TechChallenge.Tests
             });
 
             Assert.Contains(errors, (e) => e.MemberNames.Contains("Telefone") && (e.ErrorMessage?.Contains("Telefone inválido") ?? false));
+        }
+    }
+
+    class ComparerValidationResult : IEqualityComparer<ValidationResult>
+    {
+        public bool Equals(ValidationResult? x, ValidationResult? y) => (x.ErrorMessage == y.ErrorMessage && x.MemberNames.All(y.MemberNames.Contains));
+
+        public int GetHashCode([DisallowNull] ValidationResult obj)
+        {
+            throw new NotImplementedException();
         }
     }
 }
