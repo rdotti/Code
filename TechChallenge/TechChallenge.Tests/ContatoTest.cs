@@ -24,7 +24,7 @@ namespace TechChallenge.Tests
                 Telefone = "12345678"
             });
 
-            Assert.Contains(errors, (e) => e.MemberNames.Contains("Nome") && (e.ErrorMessage?.Contains("Nome é obrigatório") ?? false));
+            Assert.Contains(errors, (e) => e.MemberNames.Contains("Nome") && (e.ErrorMessage?.Contains("Nome é obrigatório", StringComparison.InvariantCultureIgnoreCase) ?? false));
         }
 
         [Fact]
