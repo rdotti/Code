@@ -2,7 +2,7 @@ name: CI Workflow
 
 on:
   push:
-    branches: [ "feat/add_integration_test" ]
+    branches: [ "master" ]
   workflow_dispatch:
 
 jobs:
