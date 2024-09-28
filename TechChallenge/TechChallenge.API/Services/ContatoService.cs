@@ -1,12 +1,13 @@
 ﻿using TechChallenge.Core.Extensions;
 using TechChallenge.Core.Models;
 using TechChallenge.Core.Repository;
+using TechChallenge.Queue.Producer;
 
 namespace TechChallenge.API.Services
 {
-    public class ContatoService(IContatoRepository _repository) : IContatoService
+    public class ContatoService(IContatoRepository _repository, IContatoProducer _producer) : IContatoService
     {
-        public void Delete(int id) => _repository.Delete(id);
+        public void Delete(int id) => _producer.SendDelete(id);
 
         public ContatoGetModel? Get(int id) => _repository.Get(id)?.FromEntity();
 
@@ -15,8 +16,8 @@ namespace TechChallenge.API.Services
 
         public IList<ContatoGetModel> GetByDDD(int ddd) => GetAll().Where(c => c.DDD == ddd).ToList();
 
-        public void Insert(ContatoInsertModel entity) => _repository.Insert(entity.ToEntity());
+        public void Insert(ContatoInsertModel model) => _producer.SendInsert(model.ToEntity());
 
-        public void Update(ContatoUpdateModel entity) => _repository.Update(entity.ToEntity());
+        public void Update(ContatoUpdateModel model) => _producer.SendUpdate(model.ToEntity());
     }
 }
