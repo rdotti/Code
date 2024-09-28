@@ -27,6 +27,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TechChallenge.Core\TechChallenge.Core.csproj" />
+    <ProjectReference Include="..\TechChallenge.Queue.Producer\TechChallenge.Queue.Producer.csproj" />
   </ItemGroup>
 
 </Project>

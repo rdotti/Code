@@ -19,6 +19,7 @@ builder.Services.AddSwaggerGen(c =>
 });
 builder.Services.AddScoped<IContatoService, ContatoService>();
 builder.Services.ConfigureDatabase(configuration.GetConnectionString("TechChallenge") ?? string.Empty);
+builder.Services.ConfigureQueueProducer();
 
 var app = builder.Build();
 
@@ -30,3 +31,5 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
 app.Run();
+
+public partial class Program { }

@@ -1,22 +1,24 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TechChallenge.Core.Entities;
 
 namespace TechChallenge.Infraestructure.Repository
 {
     public class ApplicationDbContext : DbContext
     {
-        private readonly string _connString;
+        private readonly string? _connString;
 
-        public ApplicationDbContext()
+        public ApplicationDbContext() { }
+
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
-            IConfiguration configuration = new ConfigurationBuilder().SetBasePath(AppDomain.CurrentDomain.BaseDirectory).AddJsonFile("appsettings.json").Build();
-            _connString = configuration.GetConnectionString("TechChallenge") ?? throw new Exception("String de conexão não informada");
+            IConfiguration configuration = new ConfigurationBuilder()
+                .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+                .AddJsonFile("appsettings.json")
+                .Build();
+
+            _connString = configuration.GetConnectionString("TechChallenge")
+                ?? throw new Exception("String de conexão não informada");
         }
 
         public ApplicationDbContext(string connString) { _connString = connString; }
