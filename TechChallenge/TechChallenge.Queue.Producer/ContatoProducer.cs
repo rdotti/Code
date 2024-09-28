@@ -13,15 +13,15 @@ namespace TechChallenge.Queue.Producer
 
         public ContatoProducer(IConfiguration configuration)
         {
-            _queueConfiguration = configuration.GetSection("QueueConfiguration").Get<QueueConfiguration>();// ?? throw new Exception("Queue não configurada.");
+            _queueConfiguration = configuration.GetSection("QueueConfiguration").Get<QueueConfiguration>() ?? throw new Exception("Queue não configurada.");
         }
 
         private ConnectionFactory GetFactory() =>
             new()
             {
-                HostName = _queueConfiguration?.HostName ?? "localhost",
-                UserName = _queueConfiguration?.UserName ?? "guest",
-                Password = _queueConfiguration?.Password ?? "guest",
+                HostName = _queueConfiguration.HostName,
+                UserName = _queueConfiguration.UserName,
+                Password = _queueConfiguration.Password,
             };
 
         public void SendInsert(Contato contato)
