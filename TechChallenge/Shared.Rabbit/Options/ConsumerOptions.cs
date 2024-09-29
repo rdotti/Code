@@ -1,4 +1,4 @@
-﻿namespace Shared.Rabbit.Consumer;
+﻿namespace Shared.Rabbit.Options;
 public class ConsumerOptions<TModel> where TModel : class
 {
     private int _threadsCount = 1;
@@ -12,7 +12,7 @@ public class ConsumerOptions<TModel> where TModel : class
         get => _threadsCount;
         set => _threadsCount = value < 1 ? 1 : value;
     }
-    public bool CreateQueues { get; set; } = false;
+    public bool CreateQueues { get; set; } = true;
     public string ModelName => typeof(TModel).Name;
 }
 

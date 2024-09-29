@@ -8,7 +8,7 @@ namespace Shared.Infraestructure.Configurations
     {
         public static void ConfigureDatabase(this IServiceCollection services, string connectionString)
         {
-            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
+            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString), ServiceLifetime.Singleton);
         }
     }
 }

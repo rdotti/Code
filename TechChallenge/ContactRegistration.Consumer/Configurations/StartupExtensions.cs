@@ -10,12 +10,12 @@ namespace ContactConsumer.Consumer.Configurations
         {
             services.AddConsumer<DeleteContactModel>(options =>
             {
-                options.ExchangeName = configuration.GetValue<string>(ApplicationVariables.Queues.UpdateQueue.ExchangeNmae);
-                options.QueueName = configuration.GetValue<string>(ApplicationVariables.Queues.UpdateQueue.QueueName);
-                options.RoutingKey = configuration.GetValue<string>(ApplicationVariables.Queues.UpdateQueue.RoutingKey);
-                options.ThreadsCount = configuration.GetValue<int>(ApplicationVariables.Queues.UpdateQueue.ThreadCount);
-                options.Retries = configuration.GetValue<int>(ApplicationVariables.Queues.UpdateQueue.Retries);
-                options.AwaitQueueTime = configuration.GetValue<int>(ApplicationVariables.Queues.UpdateQueue.AwaitTime);
+                options.ExchangeName = configuration.GetValue<string>(ApplicationVariables.Queues.DeletedQueue.ExchangeName);
+                options.QueueName = configuration.GetValue<string>(ApplicationVariables.Queues.DeletedQueue.QueueName);
+                options.RoutingKey = configuration.GetValue<string>(ApplicationVariables.Queues.DeletedQueue.RoutingKey);
+                options.ThreadsCount = configuration.GetValue<int>(ApplicationVariables.Queues.DeletedQueue.ThreadCount);
+                options.Retries = configuration.GetValue<int>(ApplicationVariables.Queues.DeletedQueue.Retries);
+                options.AwaitQueueTime = configuration.GetValue<int>(ApplicationVariables.Queues.DeletedQueue.AwaitTime);
             });
         }
 
@@ -36,12 +36,12 @@ namespace ContactConsumer.Consumer.Configurations
         {
             services.AddConsumer<InsertContactModel>(options =>
             {
-                options.ExchangeName = configuration.GetValue<string>(ApplicationVariables.Queues.UpdateQueue.ExchangeNmae);
-                options.QueueName = configuration.GetValue<string>(ApplicationVariables.Queues.UpdateQueue.QueueName);
-                options.RoutingKey = configuration.GetValue<string>(ApplicationVariables.Queues.UpdateQueue.RoutingKey);
-                options.ThreadsCount = configuration.GetValue<int>(ApplicationVariables.Queues.UpdateQueue.ThreadCount);
-                options.Retries = configuration.GetValue<int>(ApplicationVariables.Queues.UpdateQueue.Retries);
-                options.AwaitQueueTime = configuration.GetValue<int>(ApplicationVariables.Queues.UpdateQueue.AwaitTime);
+                options.ExchangeName = configuration.GetValue<string>(ApplicationVariables.Queues.InsertQueue.ExchangeNmae);
+                options.QueueName = configuration.GetValue<string>(ApplicationVariables.Queues.InsertQueue.QueueName);
+                options.RoutingKey = configuration.GetValue<string>(ApplicationVariables.Queues.InsertQueue.RoutingKey);
+                options.ThreadsCount = configuration.GetValue<int>(ApplicationVariables.Queues.InsertQueue.ThreadCount);
+                options.Retries = configuration.GetValue<int>(ApplicationVariables.Queues.InsertQueue.Retries);
+                options.AwaitQueueTime = configuration.GetValue<int>(ApplicationVariables.Queues.InsertQueue.AwaitTime);
             });
         }
     }

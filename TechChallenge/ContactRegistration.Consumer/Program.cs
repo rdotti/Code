@@ -5,8 +5,10 @@ using ContactConsumer.Domain.Configurations;
 using Shared.Rabbit.Configurations;
 using ContactConsumer.Domain.Models;
 using Shared.Domain.Models;
+using Shared.Infraestructure.Configurations;
 
 var builder = Host.CreateApplicationBuilder(args);
+var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
 
 builder.Services.AddRabbitMq(options =>
 {
@@ -24,6 +26,7 @@ builder.Services.AddDomain<DeleteContactModel>();
 builder.Services.AddDomain<InsertContactModel>();
 builder.Services.AddDomain<UpdateContactModel>();
 builder.Services.AddRepository();
+builder.Services.ConfigureDatabase(configuration.GetConnectionString("TechChallenge") ?? string.Empty);
 
 
 var host = builder.Build();

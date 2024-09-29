@@ -8,7 +8,7 @@ namespace ContactConsumer.Infrastructure.Configurations
     {
         public static void AddRepository(this IServiceCollection services)
         {
-            services.AddTransient<IContactConsumerRepository, ContactConsumerRepository>();
+            services.AddSingleton<IContactConsumerRepository, ContactConsumerRepository>();
         }
     }
 }

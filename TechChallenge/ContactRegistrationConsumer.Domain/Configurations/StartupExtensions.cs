@@ -9,7 +9,7 @@ namespace ContactConsumer.Domain.Configurations
         public static void AddDomain<T>(this IServiceCollection services)
             where T : ContactModel
         {
-            services.AddTransient<IContactConsumerUsecase<T>, ContactConsumerUsecase<T>>();
+            services.AddSingleton<IContactConsumerUsecase<T>, ContactConsumerUsecase<T>>();
         }
     }
 }

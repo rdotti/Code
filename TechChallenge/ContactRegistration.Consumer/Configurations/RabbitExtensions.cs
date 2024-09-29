@@ -1,5 +1,5 @@
 ﻿using Shared.Domain.Models;
-using Shared.Rabbit.Consumer;
+using Shared.Rabbit.Options;
 
 namespace ContactConsumer.Consumer.Configurations
 {

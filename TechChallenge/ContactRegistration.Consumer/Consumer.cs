@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using Shared.Domain.Models;
-using Shared.Rabbit.Consumer;
+using Shared.Rabbit.Options;
 using System.Text;
 
 namespace ContactConsumer.Consumer
