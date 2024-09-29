@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>dotnet-ContactRegistration.Consumer-34976a10-bee7-4d23-a628-1b0e8ec65849</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
+    <PackageReference Include="RabbitMQ.Client" Version="6.8.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ContactRegistrationConsumer.Domain\ContactConsumer.Domain.csproj" />
+    <ProjectReference Include="..\ContactRegistrationConsumer.Infrastructure\ContactConsumer.Infrastructure.csproj" />
+    <ProjectReference Include="..\Shared.Domain\Shared.Domain.csproj" />
+    <ProjectReference Include="..\Shared.Rabbit\Shared.Rabbit.csproj" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,6 @@
+@ContactRegistration.Api_HostAddress = http://localhost:5267
+
+GET {{ContactRegistration.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -1,5 +1,5 @@
+using Shared.Domain.Models;
 using System.ComponentModel.DataAnnotations;
-using TechChallenge.Core.Models;
 
 namespace TechChallenge.Tests
 {
@@ -16,7 +16,7 @@ namespace TechChallenge.Tests
         [Fact]
         public void Contato_Validate_NomeNulo()
         {
-            var errors = ValidateModel(new ContatoInsertModel()
+            var errors = ValidateModel(new InsertContactModel()
             {
                 DDD = 11,
                 EMail = "email@dominio.com",
@@ -30,7 +30,7 @@ namespace TechChallenge.Tests
         [Fact]
         public void Contato_Validate_NomeVazio()
         {
-            var errors = ValidateModel(new ContatoInsertModel()
+            var errors = ValidateModel(new InsertContactModel()
             {
                 DDD = 11,
                 EMail = "email@dominio.com",
@@ -44,7 +44,7 @@ namespace TechChallenge.Tests
         [Fact]
         public void Contato_Validate_EmailSemArroba()
         {
-            var errors = ValidateModel(new ContatoInsertModel()
+            var errors = ValidateModel(new InsertContactModel()
             {
                 DDD = 11,
                 EMail = "emaildominio.com",
@@ -58,7 +58,7 @@ namespace TechChallenge.Tests
         [Fact]
         public void Contato_Validate_EmailSemDominio()
         {
-            var errors = ValidateModel(new ContatoInsertModel()
+            var errors = ValidateModel(new InsertContactModel()
             {
                 DDD = 11,
                 EMail = "email@.com",
@@ -72,7 +72,7 @@ namespace TechChallenge.Tests
         [Fact]
         public void Contato_Validate_EmailSemRegiao()
         {
-            var errors = ValidateModel(new ContatoInsertModel()
+            var errors = ValidateModel(new InsertContactModel()
             {
                 DDD = 11,
                 EMail = "email@dominio",
@@ -86,7 +86,7 @@ namespace TechChallenge.Tests
         [Fact]
         public void Contato_Validate_DDD_Menor()
         {
-            var errors = ValidateModel(new ContatoInsertModel()
+            var errors = ValidateModel(new InsertContactModel()
             {
                 DDD = 1,
                 EMail = "email@dominio.com",
@@ -100,7 +100,7 @@ namespace TechChallenge.Tests
         [Fact]
         public void Contato_Validate_DDD_Maior()
         {
-            var errors = ValidateModel(new ContatoInsertModel()
+            var errors = ValidateModel(new InsertContactModel()
             {
                 DDD = 100,
                 EMail = "email@dominio.com",
@@ -114,7 +114,7 @@ namespace TechChallenge.Tests
         [Fact]
         public void Contato_Validate_Telefone_TamanhoMenor()
         {
-            var errors = ValidateModel(new ContatoInsertModel()
+            var errors = ValidateModel(new InsertContactModel()
             {
                 DDD = 11,
                 EMail = "email@dominio.com",
@@ -128,7 +128,7 @@ namespace TechChallenge.Tests
         [Fact]
         public void Contato_Validate_Telefone_TamanhoMaior()
         {
-            var errors = ValidateModel(new ContatoInsertModel()
+            var errors = ValidateModel(new InsertContactModel()
             {
                 DDD = 11,
                 EMail = "email@dominio.com",
