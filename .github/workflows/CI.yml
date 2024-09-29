@@ -1,0 +1,32 @@
+name: CI Workflow
+
+on:
+  push:
+    branches: [ "feat/micro-services-split-up" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: CI
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do código fonte
+        uses: actions/checkout@v3
+
+      - name: Configuração .NET
+        uses: actions/setup-dotnet@v4.0.1
+        with:
+          dotnet-version: '8.0.101'
+
+      - name: Imagem SQL Server
+        run: docker pull mcr.microsoft.com/mssql/server
+
+      - name: Build
+        run: dotnet build ./TechChallenge/TechChallenge.sln -c Release --verbosity minimal
+
+      - name: Testes unitários
+        run: dotnet test ./TechChallenge/TechChallenge.Tests/TechChallenge.Tests.csproj -c Release --verbosity minimal --no-build --no-restore
+
+      - name: Testes de integração
+        run: dotnet test ./TechChallenge/TechChallenge.Integration.Tests/TechChallenge.Integration.Tests.csproj -c Release --verbosity minimal --no-build --no-restore
