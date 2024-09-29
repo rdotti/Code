@@ -55,6 +55,8 @@ namespace ContactConsumer.Consumer
                 {
                     _usecase.Insert(messageBody);
                 }
+
+                channel.BasicAck(e.DeliveryTag, false);
             }
             catch (Exception)
             {
