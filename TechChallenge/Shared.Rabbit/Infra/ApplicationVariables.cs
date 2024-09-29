@@ -1,4 +1,4 @@
-﻿namespace ContactConsumer.Consumer.Infra
+﻿namespace Shared.Rabbit.Infra
 {
     public static class ApplicationVariables
     {

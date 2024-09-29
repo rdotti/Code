@@ -1,4 +1,3 @@
-using ContactConsumer.Domain.Models;
 using ContactConsumer.Domain.Usecases;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;

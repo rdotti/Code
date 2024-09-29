@@ -2,6 +2,8 @@ using Microsoft.OpenApi.Models;
 using System.Reflection;
 using ContactRegistration.Domain.Configurations;
 using ContactRegistration.Infrastructure.Configurations;
+using Shared.Rabbit.Configurations;
+using Shared.Rabbit.Infra;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +21,14 @@ builder.Services.AddSwaggerGen(c =>
 });
 builder.Services.ConfigurationDomain();
 builder.Services.ConfigurationRepository();
+builder.Services.ConfigurationRabbitProducer(options =>
+{
+    options.HostName = builder.Configuration.GetValue<string>(ApplicationVariables.Rabbit.Host);
+    options.Port = builder.Configuration.GetValue<int>(ApplicationVariables.Rabbit.Port);
+    options.Username = builder.Configuration.GetValue<string>(ApplicationVariables.Rabbit.User);
+    options.Password = builder.Configuration.GetValue<string>(ApplicationVariables.Rabbit.Password);
+    options.VirtualHost = builder.Configuration.GetValue<string>(ApplicationVariables.Rabbit.VirtualHost);
+});
 
 var app = builder.Build();
 

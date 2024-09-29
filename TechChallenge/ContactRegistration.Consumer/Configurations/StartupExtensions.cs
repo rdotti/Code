@@ -1,6 +1,5 @@
-﻿using ContactConsumer.Consumer.Infra;
-using ContactConsumer.Domain.Models;
-using Shared.Domain.Models;
+﻿using Shared.Domain.Models;
+using Shared.Rabbit.Infra;
 
 namespace ContactConsumer.Consumer.Configurations
 {

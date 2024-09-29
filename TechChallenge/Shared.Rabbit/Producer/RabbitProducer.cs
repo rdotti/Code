@@ -9,7 +9,6 @@ namespace Shared.Rabbit.Producer
         public void Publish<T>(T message, string queueName)
         {
             using var channel = _connection.CreateModel();
-            channel.QueueDeclare(queueName, durable: true, exclusive: false, autoDelete: false);
             var body = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(message));
             channel.BasicPublish("", queueName, null, body);
         }

@@ -1,11 +1,10 @@
 using ContactConsumer.Consumer.Configurations;
-using ContactConsumer.Consumer.Infra;
 using ContactConsumer.Infrastructure.Configurations;
 using ContactConsumer.Domain.Configurations;
 using Shared.Rabbit.Configurations;
-using ContactConsumer.Domain.Models;
 using Shared.Domain.Models;
 using Shared.Infraestructure.Configurations;
+using Shared.Rabbit.Infra;
 
 var builder = Host.CreateApplicationBuilder(args);
 var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();

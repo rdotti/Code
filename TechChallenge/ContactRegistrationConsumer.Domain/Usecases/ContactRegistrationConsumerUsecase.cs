@@ -1,5 +1,4 @@
-﻿using ContactConsumer.Domain.Models;
-using ContactConsumer.Domain.Repositories;
+﻿using ContactConsumer.Domain.Repositories;
 using Shared.Domain.Mapper;
 using Shared.Domain.Models;
 

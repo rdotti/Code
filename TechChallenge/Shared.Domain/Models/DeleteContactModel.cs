@@ -1,6 +1,4 @@
-﻿using Shared.Domain.Models;
-
-namespace ContactConsumer.Domain.Models
+﻿namespace Shared.Domain.Models
 {
     public class DeleteContactModel : ContactModel
     {
