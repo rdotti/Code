@@ -3,7 +3,7 @@ using System.Net.Http.Json;
 using System.Net;
 using Shared.Domain.Models;
 
-namespace TechChallange.Integration.Tests.ContactConsumerService
+namespace TechChallenge.Integration.Tests.ContactConsumerService
 {
     public class ContactConsumerTest : IClassFixture<TechChallengeWebApplicationFactory<Program>>, IClassFixture<DockerFixture>
     {

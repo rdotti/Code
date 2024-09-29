@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Shared.Infraestructure.Repository;
 
-namespace TechChallange.Integration.Tests
+namespace TechChallenge.Integration.Tests
 {
     public class TechChallengeWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup> where TStartup : class
     {

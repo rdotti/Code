@@ -4,7 +4,7 @@ using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Shared.Infraestructure.Repository;
 
-namespace TechChallange.Integration.Tests
+namespace TechChallenge.Integration.Tests
 {
     public class DockerFixture : IDisposable
     {

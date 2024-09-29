@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestPlatform.TestHost;
 using System.Net;
 
-namespace TechChallange.Integration.Tests.ContactSearchService
+namespace TechChallenge.Integration.Tests.ContactSearchService
 {
     public class ContactSearchIntegrationTest : IClassFixture<TechChallengeWebApplicationFactory<Program>>, IClassFixture<DockerFixture>
     {
