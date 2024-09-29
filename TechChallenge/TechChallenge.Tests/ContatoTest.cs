@@ -24,7 +24,7 @@ namespace TechChallenge.Tests
                 Telefone = "12345678"
             });
 
-            Assert.True(errors.Any(v => v.MemberNames.Contains("Nome") && v.ErrorMessage.Contains("Nome È obrigatÛrio")));
+            Assert.True(errors.Any(v => v.MemberNames.Contains("Nome") && v.ErrorMessage.Contains("Nome √© obrigat√≥rio")));
         }
 
         [Fact]
@@ -38,7 +38,7 @@ namespace TechChallenge.Tests
                 Telefone = "12345678"
             });
 
-            Assert.True(errors.Any(v => v.MemberNames.Contains("Nome") && v.ErrorMessage.Contains("Nome È obrigatÛrio")));
+            Assert.True(errors.Any(v => v.MemberNames.Contains("Nome") && v.ErrorMessage.Contains("Nome √© obrigat√≥rio")));
         }
 
         [Fact]
@@ -52,7 +52,7 @@ namespace TechChallenge.Tests
                 Telefone = "12345678"
             });
 
-            Assert.True(errors.Any(v => v.MemberNames.Contains("EMail") && v.ErrorMessage.Contains("E-mail inv·lido")));
+            Assert.True(errors.Any(v => v.MemberNames.Contains("EMail") && v.ErrorMessage.Contains("E-mail inv√°lido")));
         }
 
         [Fact]
@@ -66,7 +66,7 @@ namespace TechChallenge.Tests
                 Telefone = "12345678"
             });
 
-            Assert.True(errors.Any(v => v.MemberNames.Contains("EMail") && v.ErrorMessage.Contains("E-mail inv·lido")));
+            Assert.True(errors.Any(v => v.MemberNames.Contains("EMail") && v.ErrorMessage.Contains("E-mail inv√°lido")));
         }
 
         [Fact]
@@ -80,7 +80,7 @@ namespace TechChallenge.Tests
                 Telefone = "12345678"
             });
 
-            Assert.True(errors.Any(v => v.MemberNames.Contains("EMail") && v.ErrorMessage.Contains("E-mail inv·lido")));
+            Assert.True(errors.Any(v => v.MemberNames.Contains("EMail") && v.ErrorMessage.Contains("E-mail inv√°lido")));
         }
 
         [Fact]
@@ -94,7 +94,7 @@ namespace TechChallenge.Tests
                 Telefone = "12345678"
             });
 
-            Assert.True(errors.Any(v => v.MemberNames.Contains("DDD") && v.ErrorMessage.Contains("Regi„o inv·lida")));
+            Assert.True(errors.Any(v => v.MemberNames.Contains("DDD") && v.ErrorMessage.Contains("Regi√£o inv√°lida")));
         }
 
         [Fact]
@@ -108,7 +108,7 @@ namespace TechChallenge.Tests
                 Telefone = "12345678"
             });
 
-            Assert.True(errors.Any(v => v.MemberNames.Contains("DDD") && v.ErrorMessage.Contains("Regi„o inv·lida")));
+            Assert.True(errors.Any(v => v.MemberNames.Contains("DDD") && v.ErrorMessage.Contains("Regi√£o inv√°lida")));
         }
 
         [Fact]
@@ -122,7 +122,7 @@ namespace TechChallenge.Tests
                 Telefone = "1234567"
             });
 
-            Assert.True(errors.Any(v => v.MemberNames.Contains("Telefone") && v.ErrorMessage.Contains("Telefone inv·lido")));
+            Assert.True(errors.Any(v => v.MemberNames.Contains("Telefone") && v.ErrorMessage.Contains("Telefone inv√°lido")));
         }
 
         [Fact]
@@ -136,7 +136,7 @@ namespace TechChallenge.Tests
                 Telefone = "1234567890"
             });
 
-            Assert.True(errors.Any(v => v.MemberNames.Contains("Telefone") && v.ErrorMessage.Contains("Telefone inv·lido")));
+            Assert.True(errors.Any(v => v.MemberNames.Contains("Telefone") && v.ErrorMessage.Contains("Telefone inv√°lido")));
         }
     }
 }
