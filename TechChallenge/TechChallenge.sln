@@ -45,7 +45,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{2EC4D310
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{9CB9A389-08E4-4C71-871D-CB48DF0484F7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechChallange.Integration.Tests", "TechChallange.Integration.Tests\TechChallange.Integration.Tests.csproj", "{9D4D27ED-C5F9-4355-A4A8-B7C7C261AAFF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechChallenge.Integration.Tests", "TechChallenge.Integration.Tests\TechChallenge.Integration.Tests.csproj", "{9D4D27ED-C5F9-4355-A4A8-B7C7C261AAFF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -114,7 +114,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{3557EB82-4C87-4F3A-863D-4D8A19F88AED} = {2EC4D310-B7F9-4E7F-9596-ED3415FA50E0}
 		{FACC8A51-0A09-4300-B8C4-7AC33715C1D4} = {726588A0-49AA-4281-8100-51CEA5CC4C4E}
 		{84A8A948-A9E1-479E-BA6D-6B0808859670} = {FACC8A51-0A09-4300-B8C4-7AC33715C1D4}
 		{67E75910-894D-44A3-A16D-DF6E850A3D5F} = {FACC8A51-0A09-4300-B8C4-7AC33715C1D4}
