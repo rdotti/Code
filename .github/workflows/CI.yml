@@ -2,7 +2,7 @@ name: CI Workflow
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "feat/micro-services-split-up" ]
   workflow_dispatch:
 
 jobs:
