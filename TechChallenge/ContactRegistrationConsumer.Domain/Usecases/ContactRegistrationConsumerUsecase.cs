@@ -1,25 +1,31 @@
 ﻿using ContactConsumer.Domain.Repositories;
+using Microsoft.Extensions.DependencyInjection;
 using Shared.Domain.Mapper;
 using Shared.Domain.Models;
 
 namespace ContactConsumer.Domain.Usecases
 {
-    public class ContactConsumerUsecase<T>(IContactConsumerRepository _repository)
+    public class ContactConsumerUsecase<T>(IServiceProvider _serviceProvider)
         : IContactConsumerUsecase<T> where T : ContactModel
     {
-        public void Delete(T entity)
+        public void Delete(int entityId)
         {
-            if(entity is DeleteContactModel deleteModel)
+            using (var scope = _serviceProvider.CreateScope())
             {
-                _repository.Delete(deleteModel.Id);
-            }
+                var _repository = scope.ServiceProvider.GetRequiredService<IContactConsumerRepository>();
+                _repository.Delete(entityId);
+            }            
         }
 
         public void Insert(T entity)
         {
             if(entity is InsertContactModel insertModel)
             {
-                _repository.Insert(insertModel.ToEntity());
+                using(var scope = _serviceProvider.CreateScope())
+                {
+                    var _repository = scope.ServiceProvider.GetRequiredService<IContactConsumerRepository>();
+                    _repository.Insert(insertModel.ToEntity());
+                }
             }
         }
 
@@ -27,7 +33,11 @@ namespace ContactConsumer.Domain.Usecases
         {
             if(entity is UpdateContactModel updateModel)
             {
-                _repository.Update(updateModel.ToEntity());
+                using (var scope = _serviceProvider.CreateScope())
+                {
+                    var _repository = scope.ServiceProvider.GetRequiredService<IContactConsumerRepository>();
+                    _repository.Update(updateModel.ToEntity());
+                }                
             }
         }
     }

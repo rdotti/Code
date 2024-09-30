@@ -41,20 +41,23 @@ namespace ContactConsumer.Consumer
             try
             {
                 var message = Encoding.UTF8.GetString(e.Body.ToArray());
-                var messageBody = JsonConvert.DeserializeObject<T>(message);
+                if (int.TryParse(message, out var id))
+                {
+                    _usecase.Delete(id);
+                }
+                else
+                {
+                    var messageBody = JsonConvert.DeserializeObject<T>(message);
 
-                if(typeof(T) == typeof(UpdateContactModel))
-                {
-                    _usecase.Update(messageBody);
-                }
-                else if (typeof(T) == typeof(DeleteContactModel))
-                { 
-                    _usecase.Delete(messageBody);
-                }
-                else if (typeof(T) == typeof(InsertContactModel))
-                {
-                    _usecase.Insert(messageBody);
-                }
+                    if (typeof(T) == typeof(UpdateContactModel))
+                    {
+                        _usecase.Update(messageBody);
+                    }
+                    else if (typeof(T) == typeof(InsertContactModel))
+                    {
+                        _usecase.Insert(messageBody);
+                    }
+                }               
 
                 channel.BasicAck(e.DeliveryTag, false);
             }
