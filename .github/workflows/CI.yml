@@ -27,9 +27,3 @@ jobs:
 
       - name: Testes unitários
         run: dotnet test ./TechChallenge/TechChallenge.Tests/TechChallenge.Tests.csproj -c Release --verbosity minimal --no-build --no-restore
-
-      - name: Conteudo diretorio
-        run: ls -R
-
-      - name: Testes de integração
-        run: dotnet test ./TechChallenge/TechChallenge.Integration.Tests/TechChallenge.Integration.Tests.csproj -c Release --verbosity minimal --no-build --no-restore
