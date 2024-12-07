@@ -3,6 +3,10 @@ using System.Reflection;
 using ContactSearch.Domain.Configurations;
 using ContactSearch.Infrastructure.Configurations;
 using Shared.Infraestructure.Configurations;
+using Shared.Infraestructure.Repository;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
@@ -21,16 +25,20 @@ builder.Services.AddSwaggerGen(c =>
 });
 builder.Services.ConfigurationDomain();
 builder.Services.ConfigurationRepository();
-builder.Services.ConfigureDatabase(configuration.GetConnectionString("TechChallenge") ?? string.Empty);
+var conn = Environment.GetEnvironmentVariable("ConnectionString_TechChallenge");
+builder.Services.ConfigureDatabase(conn ?? configuration.GetConnectionString("TechChallenge") ?? string.Empty);
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-//if (app.Environment.IsDevelopment())
-//{
+if (app.Environment.IsDevelopment())
+{
     app.UseSwagger();
     app.UseSwaggerUI();
-//}
+}
+
+using (var scope = app.Services.CreateScope())
+    scope.ServiceProvider.GetService<ApplicationDbContext>()?.Database.Migrate();
 
 app.UseHttpsRedirection();
 
